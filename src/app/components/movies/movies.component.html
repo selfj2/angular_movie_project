@@ -1,0 +1,49 @@
+<app-navigation></app-navigation>
+
+
+        <h1>Find A Movie</h1>
+        <form (submit)="searchMovies()">
+          <input type="text" class="form-control" [(ngModel)]="searchStr" name="searchStr">
+          <br>
+          <button class="btn btn-primary btn-lg">Find</button>
+        </form>
+
+
+           <!--Search Result Area-->
+           
+
+  
+        <h3>Popular Movies</h3>
+
+
+  <div class="movieresults">
+      <div *ngFor="let movie of popularList; let i=index" class="col-md-2">
+      <div *ngIf="i < 6">
+         <img *ngIf="movie.poster_path" class="thumbnail" style="display: inline-block" src="http://image.tmdb.org/t/p/w200/{{ movie.poster_path }}" alt="">
+         <h4>{{ movie.title }}</h4>
+         <p>{{ movie.release_date }}</p>
+      <p><a class="btn btn-default" routerLink="/movie/{{movie.id}}" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+
+   </div>
+
+
+
+   <div class="movieresults">
+      <div *ngIf="searchRes" class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Search Results</h3>
+          </div>
+          <div class="body">
+                <div *ngFor="let movie of searchRes;let i=index" class="col-md-2">
+                    <div *ngIf="i < 6">
+                    <img *ngIf="movie.poster_path" class="thumbnail" style="display: inline-block" src="http://image.tmdb.org/t/p/w200/{{movie.poster_path}}">
+                    <h4>{{movie.title}}</h4>
+                    <p>{{movie.release_date}}</p>
+                    <p><a class="button" routerLink="/movie/{{movie.id}}" role="button">View details &raquo;</a></p>
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
